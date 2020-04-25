@@ -4,9 +4,9 @@ import { dijkstra, getNodesInShortestPathOrder } from "../algorithms/dijkstra";
 
 import "./PathFindingVisualizer.css";
 
-const START_NODE_ROW = 10;
+const START_NODE_ROW = 12;
 const START_NODE_COL = 15;
-const FINISH_NODE_ROW = 10;
+const FINISH_NODE_ROW = 12;
 const FINISH_NODE_COL = 60;
 
 export default class PathfindingVisualizer extends Component {
@@ -15,6 +15,7 @@ export default class PathfindingVisualizer extends Component {
     this.state = {
       grid: [],
       mouseIsPressed: false,
+      dijkstraStart: false,
     };
   }
 
@@ -23,9 +24,28 @@ export default class PathfindingVisualizer extends Component {
     this.setState({ grid });
   }
 
+  resetBoard() {
+    if (!this.state.dijkstraStart) {
+      var grid = getInitialGrid();
+      for (let i = 0; i < 25; i++) {
+        for (let j = 0; j < 80; j++) {
+          document.getElementById(`node-${12}-${15}`).className =
+            "node node-start";
+          document.getElementById(`node-${12}-${60}`).className =
+            "node node-finish";
+          document.getElementById(`node-${i}-${j}`).className =
+            "node node-reset";
+        }
+      }
+      this.setState({ grid });
+    }
+  }
+
   handleMouseDown(row, col) {
-    const newGrid = getNewGridWithWallToggled(this.state.grid, row, col);
-    this.setState({ grid: newGrid, mouseIsPressed: true });
+    if (!this.state.dijkstraStart) {
+      const newGrid = getNewGridWithWallToggled(this.state.grid, row, col);
+      this.setState({ grid: newGrid, mouseIsPressed: true });
+    }
   }
 
   handleMouseEnter(row, col) {
@@ -39,6 +59,7 @@ export default class PathfindingVisualizer extends Component {
   }
 
   animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder) {
+    this.setState({ dijkstraStart: true });
     for (let i = 0; i <= visitedNodesInOrder.length; i++) {
       if (i === visitedNodesInOrder.length) {
         setTimeout(() => {
@@ -48,8 +69,12 @@ export default class PathfindingVisualizer extends Component {
       }
       setTimeout(() => {
         const node = visitedNodesInOrder[i];
+        document.getElementById(`node-${12}-${15}`).className =
+          "node node-start";
         document.getElementById(`node-${node.row}-${node.col}`).className =
           "node node-visited";
+        document.getElementById(`node-${12}-${60}`).className =
+          "node node-finish";
       }, 10 * i);
     }
   }
@@ -58,10 +83,15 @@ export default class PathfindingVisualizer extends Component {
     for (let i = 0; i < nodesInShortestPathOrder.length; i++) {
       setTimeout(() => {
         const node = nodesInShortestPathOrder[i];
+        document.getElementById(`node-${12}-${15}`).className =
+          "node node-start";
         document.getElementById(`node-${node.row}-${node.col}`).className =
           "node node-shortest-path";
+        document.getElementById(`node-${12}-${60}`).className =
+          "node node-finish";
       }, 50 * i);
     }
+    this.setState({ dijkstraStart: false });
   }
 
   visualizeDijkstra() {
@@ -79,11 +109,7 @@ export default class PathfindingVisualizer extends Component {
     return (
       <>
         <div className="button-container1">
-          <button
-            href="#"
-            className="button"
-            onClick={() => this.componentDidMount()}
-          >
+          <button href="#" className="button" onClick={() => this.resetBoard()}>
             Reset Board
           </button>
         </div>
