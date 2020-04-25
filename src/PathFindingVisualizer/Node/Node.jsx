@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 
-import './Node.css';
+import "./Node.css";
 
 export default class Node extends Component {
   render() {
@@ -12,15 +12,16 @@ export default class Node extends Component {
       onMouseDown,
       onMouseEnter,
       onMouseUp,
+      onMouseClick,
       row,
     } = this.props;
     const extraClassName = isFinish
-      ? 'node-finish'
+      ? "node-finish"
       : isStart
-      ? 'node-start'
+      ? "node-start"
       : isWall
-      ? 'node-wall'
-      : '';
+      ? "node-wall"
+      : "";
 
     return (
       <div
@@ -28,7 +29,9 @@ export default class Node extends Component {
         className={`node ${extraClassName}`}
         onMouseDown={() => onMouseDown(row, col)}
         onMouseEnter={() => onMouseEnter(row, col)}
-        onMouseUp={() => onMouseUp()}></div>
+        onMouseClick={() => onMouseClick(row, col)}
+        onMouseUp={() => onMouseUp()}
+      ></div>
     );
   }
 }

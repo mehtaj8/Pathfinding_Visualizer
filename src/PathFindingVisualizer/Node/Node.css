@@ -3,6 +3,7 @@
   height: 23px;
   outline: 1px solid rgb(175, 216, 248);
   display: inline-block;
+  background-color: white;
 }
 
 .node-finish {
@@ -34,17 +35,17 @@
   }
 
   50% {
-    background-color: rgba(17, 104, 217, 0.75);
+    background-color: rgba(217, 17, 60, 0.75);
   }
 
   75% {
     transform: scale(1.2);
-    background-color: rgba(0, 217, 159, 0.75);
+    background-color: rgba(192, 75, 167, 0.952);
   }
 
   100% {
     transform: scale(1);
-    background-color: rgba(0, 190, 218, 0.75);
+    background-color: rgba(138, 0, 218, 0.75);
   }
 }
 
