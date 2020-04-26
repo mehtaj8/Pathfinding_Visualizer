@@ -7,7 +7,7 @@ import "./PathFindingVisualizer.css";
 const START_NODE_ROW = 12;
 const START_NODE_COL = 15;
 const FINISH_NODE_ROW = 12;
-const FINISH_NODE_COL = 60;
+const FINISH_NODE_COL = 59;
 
 export default class PathfindingVisualizer extends Component {
   constructor() {
@@ -29,11 +29,13 @@ export default class PathfindingVisualizer extends Component {
     if (!this.state.dijkstraStart) {
       var grid = getInitialGrid();
       for (let i = 0; i < 25; i++) {
-        for (let j = 0; j < 80; j++) {
-          document.getElementById(`node-${12}-${15}`).className =
-            "node node-start";
-          document.getElementById(`node-${12}-${60}`).className =
-            "node node-finish";
+        for (let j = 0; j < 81; j++) {
+          document.getElementById(
+            `node-${START_NODE_ROW}-${START_NODE_COL}`
+          ).className = "node node-start";
+          document.getElementById(
+            `node-${FINISH_NODE_ROW}-${FINISH_NODE_COL}`
+          ).className = "node node-finish";
           document.getElementById(`node-${i}-${j}`).className =
             "node node-reset";
         }
@@ -70,12 +72,14 @@ export default class PathfindingVisualizer extends Component {
       }
       setTimeout(() => {
         const node = visitedNodesInOrder[i];
-        document.getElementById(`node-${12}-${15}`).className =
-          "node node-start";
+        document.getElementById(
+          `node-${START_NODE_ROW}-${START_NODE_COL}`
+        ).className = "node node-start";
         document.getElementById(`node-${node.row}-${node.col}`).className =
           "node node-visited";
-        document.getElementById(`node-${12}-${60}`).className =
-          "node node-finish";
+        document.getElementById(
+          `node-${FINISH_NODE_ROW}-${FINISH_NODE_COL}`
+        ).className = "node node-finish";
       }, 10 * i);
     }
   }
@@ -84,12 +88,14 @@ export default class PathfindingVisualizer extends Component {
     for (let i = 0; i < nodesInShortestPathOrder.length; i++) {
       setTimeout(() => {
         const node = nodesInShortestPathOrder[i];
-        document.getElementById(`node-${12}-${15}`).className =
-          "node node-start";
+        document.getElementById(
+          `node-${START_NODE_ROW}-${START_NODE_COL}`
+        ).className = "node node-start";
         document.getElementById(`node-${node.row}-${node.col}`).className =
           "node node-shortest-path";
-        document.getElementById(`node-${12}-${60}`).className =
-          "node node-finish";
+        document.getElementById(
+          `node-${FINISH_NODE_ROW}-${FINISH_NODE_COL}`
+        ).className = "node node-finish";
       }, 50 * i);
     }
     this.setState({ dijkstraStart: false });
@@ -104,7 +110,7 @@ export default class PathfindingVisualizer extends Component {
     this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
   }
 
-  makeEdgeBorder() {
+  makeMaze() {
     var newGrid = getInitialGrid();
     if (!this.state.mazeGenerated && !this.state.dijkstraStart) {
       for (let j = 0; j < 80; j++) {
@@ -112,8 +118,8 @@ export default class PathfindingVisualizer extends Component {
         document.getElementById(`node-${0}-${j}`).className = "node node-wall";
       }
       for (let i = 0; i < 25; i++) {
-        newGrid = getNewGridWithWallToggled(this.state.grid, i, 79);
-        document.getElementById(`node-${i}-${79}`).className = "node node-wall";
+        newGrid = getNewGridWithWallToggled(this.state.grid, i, 80);
+        document.getElementById(`node-${i}-${80}`).className = "node node-wall";
       }
       for (let j = 79; j >= 0; j--) {
         newGrid = getNewGridWithWallToggled(this.state.grid, 24, j);
@@ -121,8 +127,9 @@ export default class PathfindingVisualizer extends Component {
       }
       for (let i = 24; i >= 0; i--) {
         newGrid = getNewGridWithWallToggled(this.state.grid, i, 0);
-        document.getElementById(`node-${i}-${79}`).className = "node node-wall";
+        document.getElementById(`node-${i}-${80}`).className = "node node-wall";
       }
+      newGrid = verticalMaze(newGrid);
       this.setState({ grid: newGrid, mazeGenerated: true });
     }
   }
@@ -166,11 +173,7 @@ export default class PathfindingVisualizer extends Component {
           &nbsp; --> Wall
         </p>
         <div className="button-container2">
-          <button
-            href="#"
-            className="button"
-            onClick={() => this.makeEdgeBorder()}
-          >
+          <button href="#" className="button" onClick={() => this.makeMaze()}>
             Generate Maze
           </button>
         </div>
@@ -224,7 +227,7 @@ const getInitialGrid = () => {
   const grid = [];
   for (let row = 0; row < 25; row++) {
     const currentRow = [];
-    for (let col = 0; col < 80; col++) {
+    for (let col = 0; col < 81; col++) {
       currentRow.push(createNode(col, row));
     }
     grid.push(currentRow);
@@ -253,5 +256,19 @@ const getNewGridWithWallToggled = (grid, row, col) => {
     isWall: !node.isWall,
   };
   newGrid[row][col] = newNode;
+  return newGrid;
+};
+
+const verticalMaze = (grid) => {
+  var newGrid = grid;
+  for (let j = 2; j <= 78; j += 2) {
+    for (let i = 1; i < 24; i++) {
+      newGrid = getNewGridWithWallToggled(newGrid, i, j);
+    }
+    for (let k = 0; k < 3; k++) {
+      var randomNum = Math.floor(Math.random() * 23) + 1;
+      newGrid = getNewGridWithWallToggled(newGrid, randomNum, j);
+    }
+  }
   return newGrid;
 };

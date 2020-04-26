@@ -9,11 +9,13 @@
 
 .node-finish {
   background-image: url(images/Final.png);
+  background-color: red;
   background-size: 23px;
 }
 
 .node-start {
   background-image: url(images/Start.png);
+  background-color: green;
   background-size: 25px;
 }
 
