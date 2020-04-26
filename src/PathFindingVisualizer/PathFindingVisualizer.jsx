@@ -111,22 +111,22 @@ export default class PathfindingVisualizer extends Component {
   }
 
   makeMaze() {
-    var newGrid = this.resetBoard();
+    var newGrid = getInitialGrid();
     if (!this.state.mazeGenerated && !this.state.dijkstraStart) {
       for (let j = 0; j < 80; j++) {
-        newGrid = getNewGridWithWallToggled(this.state.grid, 0, j);
+        newGrid = getNewGridWithWallToggled(newGrid, 0, j);
         document.getElementById(`node-${0}-${j}`).className = "node node-wall";
       }
       for (let i = 0; i < 25; i++) {
-        newGrid = getNewGridWithWallToggled(this.state.grid, i, 80);
+        newGrid = getNewGridWithWallToggled(newGrid, i, 80);
         document.getElementById(`node-${i}-${80}`).className = "node node-wall";
       }
       for (let j = 79; j >= 0; j--) {
-        newGrid = getNewGridWithWallToggled(this.state.grid, 24, j);
+        newGrid = getNewGridWithWallToggled(newGrid, 24, j);
         document.getElementById(`node-${24}-${j}`).className = "node node-wall";
       }
       for (let i = 24; i >= 0; i--) {
-        newGrid = getNewGridWithWallToggled(this.state.grid, i, 0);
+        newGrid = getNewGridWithWallToggled(newGrid, i, 0);
         document.getElementById(`node-${i}-${80}`).className = "node node-wall";
       }
       newGrid = verticalMaze(newGrid);
