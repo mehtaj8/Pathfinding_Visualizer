@@ -16,6 +16,7 @@ export default class PathfindingVisualizer extends Component {
       grid: [],
       mouseIsPressed: false,
       dijkstraStart: false,
+      mazeGenerated: false,
     };
   }
 
@@ -37,7 +38,7 @@ export default class PathfindingVisualizer extends Component {
             "node node-reset";
         }
       }
-      this.setState({ grid });
+      this.setState({ grid: grid, mazeGenerated: false });
     }
   }
 
@@ -103,11 +104,76 @@ export default class PathfindingVisualizer extends Component {
     this.animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
   }
 
+  makeEdgeBorder() {
+    var newGrid = getInitialGrid();
+    if (!this.state.mazeGenerated && !this.state.dijkstraStart) {
+      for (let j = 0; j < 80; j++) {
+        newGrid = getNewGridWithWallToggled(this.state.grid, 0, j);
+        document.getElementById(`node-${0}-${j}`).className = "node node-wall";
+      }
+      for (let i = 0; i < 25; i++) {
+        newGrid = getNewGridWithWallToggled(this.state.grid, i, 79);
+        document.getElementById(`node-${i}-${79}`).className = "node node-wall";
+      }
+      for (let j = 79; j >= 0; j--) {
+        newGrid = getNewGridWithWallToggled(this.state.grid, 24, j);
+        document.getElementById(`node-${24}-${j}`).className = "node node-wall";
+      }
+      for (let i = 24; i >= 0; i--) {
+        newGrid = getNewGridWithWallToggled(this.state.grid, i, 0);
+        document.getElementById(`node-${i}-${79}`).className = "node node-wall";
+      }
+      this.setState({ grid: newGrid, mazeGenerated: true });
+    }
+  }
+
   render() {
     const { grid, mouseIsPressed } = this.state;
 
     return (
       <>
+        <body>Welcome To The Dijkstra's Graph Traversal Visualizer</body>
+        <h1>Legend:</h1>
+        <p>
+          <img
+            className="iconSize"
+            src={require("./Node/images/Unvisited.png")}
+          ></img>
+          &nbsp; --> Unvisited State
+          <br></br>
+          <img src={require("./Node/images/Visited.png")}></img>
+          &nbsp; --> Visited State
+          <br></br>
+          <img src={require("./Node/images/Path.png")}></img>
+          &nbsp; --> Path
+          <br></br>
+          <img
+            className="iconSize"
+            src={require("./Node/images/Start.png")}
+          ></img>
+          &nbsp; --> Start State
+          <br></br>
+          <img
+            className="iconSize"
+            src={require("./Node/images/Final.png")}
+          ></img>
+          &nbsp; --> Final State
+          <br></br>
+          <img
+            className="iconSize"
+            src={require("./Node/images/Wall.png")}
+          ></img>
+          &nbsp; --> Wall
+        </p>
+        <div className="button-container2">
+          <button
+            href="#"
+            className="button"
+            onClick={() => this.makeEdgeBorder()}
+          >
+            Generate Maze
+          </button>
+        </div>
         <div className="button-container1">
           <button href="#" className="button" onClick={() => this.resetBoard()}>
             Reset Board

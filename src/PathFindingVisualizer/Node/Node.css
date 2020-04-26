@@ -3,6 +3,7 @@
   height: 23px;
   outline: 1px solid rgb(175, 216, 248);
   display: inline-block;
+  transform: scale(1);
   background-color: white;
 }
 
@@ -17,7 +18,7 @@
 }
 
 .node-reset {
-  animation-name: visitAnimation;
+  animation-name: clearAnimation;
   animation-duration: 1.5s;
   animation-timing-function: ease-out;
   animation-delay: 0;
@@ -27,15 +28,21 @@
   animation-play-state: running;
 }
 
-@keyframes visitAnimation {
+@keyframes clearAnimation {
   0% {
     transform: scale(0.3);
-    background-color: rgba(0, 0, 66, 0.75);
+    background-color: rgb(99, 99, 99);
     border-radius: 100%;
+  }
+  50% {
+    background-color: black;
+  }
+  75% {
+    background-color: grey;
   }
   100% {
     transform: scale(1);
-    background-color: rgba(255, 255, 255, 0.75);
+    background-color: white;
   }
 }
 
