@@ -28,7 +28,7 @@ p {
 
 .button-container {
   position: absolute;
-  top: 10%;
+  top: 15%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
@@ -36,7 +36,7 @@ p {
 
 .button-container1 {
   position: absolute;
-  top: 10%;
+  top: 15%;
   left: 30%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
@@ -44,7 +44,7 @@ p {
 
 .button-container2 {
   position: absolute;
-  top: 10%;
+  top: 15%;
   left: 10%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);

@@ -20,32 +20,7 @@
 }
 
 .node-reset {
-  animation-name: clearAnimation;
-  animation-duration: 1.5s;
-  animation-timing-function: ease-out;
-  animation-delay: 0;
-  animation-direction: alternate;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-  animation-play-state: running;
-}
-
-@keyframes clearAnimation {
-  0% {
-    transform: scale(0.3);
-    background-color: rgb(99, 99, 99);
-    border-radius: 100%;
-  }
-  50% {
-    background-color: black;
-  }
-  75% {
-    background-color: grey;
-  }
-  100% {
-    transform: scale(1);
-    background-color: white;
-  }
+  background-color: white;
 }
 
 .node-visited {
