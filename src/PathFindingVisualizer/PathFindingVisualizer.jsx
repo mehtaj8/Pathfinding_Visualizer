@@ -111,7 +111,7 @@ export default class PathfindingVisualizer extends Component {
   }
 
   makeMaze() {
-    var newGrid = getInitialGrid();
+    var newGrid = this.resetBoard();
     if (!this.state.mazeGenerated && !this.state.dijkstraStart) {
       for (let j = 0; j < 80; j++) {
         newGrid = getNewGridWithWallToggled(this.state.grid, 0, j);
