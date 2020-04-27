@@ -17,6 +17,7 @@ export default class PathfindingVisualizer extends Component {
       mouseIsPressed: false,
       dijkstraStart: false,
       mazeGenerated: false,
+      reset: true,
     };
   }
 
@@ -40,7 +41,7 @@ export default class PathfindingVisualizer extends Component {
             "node node-reset";
         }
       }
-      this.setState({ grid: grid, mazeGenerated: false });
+      this.setState({ grid: grid, mazeGenerated: false, reset: true });
     }
   }
 
@@ -98,7 +99,9 @@ export default class PathfindingVisualizer extends Component {
         ).className = "node node-finish";
       }, 50 * i);
     }
-    this.setState({ dijkstraStart: false });
+    setTimeout(() => {
+      this.setState({ dijkstraStart: false, reset: false });
+    }, 50 * nodesInShortestPathOrder.length);
   }
 
   visualizeDijkstra() {
@@ -112,7 +115,7 @@ export default class PathfindingVisualizer extends Component {
 
   makeMaze() {
     var newGrid = getInitialGrid();
-    if (!this.state.mazeGenerated && !this.state.dijkstraStart) {
+    if (!this.state.dijkstraStart && this.state.reset) {
       for (let j = 0; j < 80; j++) {
         newGrid = getNewGridWithWallToggled(newGrid, 0, j);
         document.getElementById(`node-${0}-${j}`).className = "node node-wall";
@@ -141,32 +144,37 @@ export default class PathfindingVisualizer extends Component {
       <>
         <body>Welcome To The Dijkstra's Graph Traversal Visualizer</body>
         <h1>Legend:</h1>
+        <p1>Please resize screen until grid is fixed.</p1>
         <p>
           <img
+            alt="Unvisited"
             className="iconSize"
             src={require("./Node/images/Unvisited.png")}
           ></img>
           &nbsp; --> Unvisited State
           <br></br>
-          <img src={require("./Node/images/Visited.png")}></img>
+          <img alt="Visited" src={require("./Node/images/Visited.png")}></img>
           &nbsp; --> Visited State
           <br></br>
-          <img src={require("./Node/images/Path.png")}></img>
+          <img alt="Path" src={require("./Node/images/Path.png")}></img>
           &nbsp; --> Path
           <br></br>
           <img
+            alt="Start"
             className="iconSize"
             src={require("./Node/images/Start.png")}
           ></img>
           &nbsp; --> Start State
           <br></br>
           <img
+            alt="Final"
             className="iconSize"
             src={require("./Node/images/Final.png")}
           ></img>
           &nbsp; --> Final State
           <br></br>
           <img
+            alt="Wall"
             className="iconSize"
             src={require("./Node/images/Wall.png")}
           ></img>
