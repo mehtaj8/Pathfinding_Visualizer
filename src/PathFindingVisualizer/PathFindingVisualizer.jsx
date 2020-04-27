@@ -46,7 +46,7 @@ export default class PathfindingVisualizer extends Component {
   }
 
   handleMouseDown(row, col) {
-    if (!this.state.dijkstraStart) {
+    if (!this.state.dijkstraStart && this.state.reset) {
       const newGrid = getNewGridWithWallToggled(this.state.grid, row, col);
       this.setState({ grid: newGrid, mouseIsPressed: true });
     }
@@ -147,7 +147,9 @@ export default class PathfindingVisualizer extends Component {
       <>
         <body>Welcome To The Dijkstra's Graph Traversal Visualizer</body>
         <h1>Legend:</h1>
-        <p1>Please resize screen until grid is fixed.</p1>
+        <p2>Click on the grid to draw walls!!!!</p2>
+        <br></br>
+        <p1>Please resize screen until scroll bar is gone.</p1>
         <p>
           <img
             alt="Unvisited"

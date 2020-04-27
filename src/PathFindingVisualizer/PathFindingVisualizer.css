@@ -21,6 +21,14 @@ p {
   left: 67%;
 }
 
+p1 {
+  color: red;
+}
+
+p2 {
+  color: blue;
+}
+
 .iconSize {
   width: 23px;
   height: 23px;
