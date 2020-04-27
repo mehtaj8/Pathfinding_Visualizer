@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/Dijkstras_Visualizer/static/css/main.479efb5a.chunk.css",
+    "main.css": "/Dijkstras_Visualizer/static/css/main.f6445d26.chunk.css",
     "main.js": "/Dijkstras_Visualizer/static/js/main.ab9e3429.chunk.js",
     "main.js.map": "/Dijkstras_Visualizer/static/js/main.ab9e3429.chunk.js.map",
     "runtime-main.js": "/Dijkstras_Visualizer/static/js/runtime-main.f7838b87.js",
@@ -8,9 +8,9 @@
     "static/js/2.d6eedfb4.chunk.js": "/Dijkstras_Visualizer/static/js/2.d6eedfb4.chunk.js",
     "static/js/2.d6eedfb4.chunk.js.map": "/Dijkstras_Visualizer/static/js/2.d6eedfb4.chunk.js.map",
     "index.html": "/Dijkstras_Visualizer/index.html",
-    "precache-manifest.84499603dd6b5e9efab889984dc8568d.js": "/Dijkstras_Visualizer/precache-manifest.84499603dd6b5e9efab889984dc8568d.js",
+    "precache-manifest.e49513a2dab290b80dcc9e01f59f85ad.js": "/Dijkstras_Visualizer/precache-manifest.e49513a2dab290b80dcc9e01f59f85ad.js",
     "service-worker.js": "/Dijkstras_Visualizer/service-worker.js",
-    "static/css/main.479efb5a.chunk.css.map": "/Dijkstras_Visualizer/static/css/main.479efb5a.chunk.css.map",
+    "static/css/main.f6445d26.chunk.css.map": "/Dijkstras_Visualizer/static/css/main.f6445d26.chunk.css.map",
     "static/js/2.d6eedfb4.chunk.js.LICENSE.txt": "/Dijkstras_Visualizer/static/js/2.d6eedfb4.chunk.js.LICENSE.txt",
     "static/media/Final.png": "/Dijkstras_Visualizer/static/media/Final.515e902e.png",
     "static/media/Start.png": "/Dijkstras_Visualizer/static/media/Start.ec8ab8d8.png"
@@ -18,7 +18,7 @@
   "entrypoints": [
     "static/js/runtime-main.f7838b87.js",
     "static/js/2.d6eedfb4.chunk.js",
-    "static/css/main.479efb5a.chunk.css",
+    "static/css/main.f6445d26.chunk.css",
     "static/js/main.ab9e3429.chunk.js"
   ]
 }

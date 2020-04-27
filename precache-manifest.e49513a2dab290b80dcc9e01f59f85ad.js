@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3fadf320be6d817dd8492f5a740d9f48",
+    "revision": "98d7930bba523bf456f00fa95c7779a3",
     "url": "/Dijkstras_Visualizer/index.html"
   },
   {
-    "revision": "de86b7dfcaf8e54cb184",
-    "url": "/Dijkstras_Visualizer/static/css/main.479efb5a.chunk.css"
+    "revision": "2957bdb63b8a80934447",
+    "url": "/Dijkstras_Visualizer/static/css/main.f6445d26.chunk.css"
   },
   {
     "revision": "92e683e84d82291783e5",
@@ -16,7 +16,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/Dijkstras_Visualizer/static/js/2.d6eedfb4.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "de86b7dfcaf8e54cb184",
+    "revision": "2957bdb63b8a80934447",
     "url": "/Dijkstras_Visualizer/static/js/main.ab9e3429.chunk.js"
   },
   {
