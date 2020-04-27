@@ -145,11 +145,11 @@ export default class PathfindingVisualizer extends Component {
 
     return (
       <>
-        <body>Welcome To The Dijkstra's Graph Traversal Visualizer</body>
+        <body>Welcome To The Dijkstra's Pathfinding Visualizer</body>
         <h1>Legend:</h1>
         <p2>Click on the grid to draw walls!!!!</p2>
         <br></br>
-        <p1>Please resize screen until scroll bar is gone.</p1>
+        <p1>Please resize screen until scroll bar on right is gone.</p1>
         <p>
           <img
             alt="Unvisited"

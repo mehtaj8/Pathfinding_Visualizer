@@ -1,5 +1,8 @@
 .grid {
   margin: 225px 0 0;
+  position: relative;
+  padding-left: 0%;
+  padding-top: 0%;
 }
 
 body {
@@ -22,6 +25,9 @@ p {
 }
 
 p1 {
+  position: absolute;
+  top: 22%;
+  left: 16%;
   color: red;
 }
 
